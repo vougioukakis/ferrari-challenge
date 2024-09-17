@@ -1,0 +1,81 @@
+body{
+    overflow: hidden;
+}
+
+.carousel-element {
+    width: 200px;
+    height: 120px;
+    background-color: red;
+    position: absolute; /* Make sure the element is positioned absolutely or relatively */
+    top:150%;
+    left:150%;
+    transition: all 0.5s ease; /* Smooth transition on all properties */
+    opacity: 0.5;
+}
+
+.active{
+    top:50%;
+    left:50%;
+    transform: scale(1.8);
+    opacity: 1;
+}
+
+.prev{
+    top:10%;
+    left:80%;
+}
+
+.next{
+    top:80%;
+    left:10%;
+}
+
+.out-next{
+    top:110%;
+    left:-10%;
+}
+
+.out-prev{
+    top:-10%;
+    left:110%;
+}
+
+.hidden{
+    display: none;
+}
+
+.car-img{
+    height: 120px;
+    width: 200px;
+}
+
+.spec{
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+.active-spec{
+    opacity: 1;
+}
+
+.name{
+    position:absolute;
+    top: 40%;
+    left:30%;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.name-active{
+    opacity: 1;
+    top: 40%;
+    left:30%;
+}
+.name-next{
+    top:50%;
+    left:30%;
+}
+
+.name-prev{
+    top: 20%;
+    left:60%;
+}

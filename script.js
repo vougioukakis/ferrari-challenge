@@ -36,35 +36,54 @@ document.addEventListener('wheel', throttle((event) => {
 }, 900));
 */
 
-let isScrolling = false;    
-document.addEventListener('wheel', (event) => {
-    if (!isScrolling) {
-        // Prevent multiple scrolls in quick succession
-        if (event.deltaY < -60) {
-            cycle('prev');
-            console.log('up');
-            isScrolling = true;
-            // Allow scrolling again after 600ms (or another value that feels smooth)
-            setTimeout(() => {
-                isScrolling = false;
-            }, 600);
-
-        } else if (event.deltaY > 60) {
-            cycle('next');
-            console.log('down');
-            isScrolling = true;
-            // Allow scrolling again after 600ms (or another value that feels smooth)
-            setTimeout(() => {
-                isScrolling = false;
-            }, 600);
-
-        } else {
-            console.log('didnt register');
+function detectMob() {
+    const toMatch = [
+        /Android/i,
+        /webOS/i,
+        /iPhone/i,
+        /iPad/i,
+        /iPod/i,
+        /BlackBerry/i,
+        /Windows Phone/i
+    ];
+    
+    return toMatch.some((toMatchItem) => {
+        return navigator.userAgent.match(toMatchItem);
+    });
+}
+console.log(detectMob())
+if (!detectMob()){
+    let isScrolling = false;    
+    document.addEventListener('wheel', (event) => {
+        if (!isScrolling) {
+            // Prevent multiple scrolls in quick succession
+            if (event.deltaY < -60) {
+                cycle('prev');
+                console.log('up');
+                isScrolling = true;
+                // Allow scrolling again after 600ms (or another value that feels smooth)
+                setTimeout(() => {
+                    isScrolling = false;
+                }, 600);
+    
+            } else if (event.deltaY > 60) {
+                cycle('next');
+                console.log('down');
+                isScrolling = true;
+                // Allow scrolling again after 600ms (or another value that feels smooth)
+                setTimeout(() => {
+                    isScrolling = false;
+                }, 600);
+    
+            } else {
+                console.log('didnt register');
+            }
+    
+    
         }
+    });
+}
 
-
-    }
-});
 /**
  * modulo arithmetic to make the index positive
  */

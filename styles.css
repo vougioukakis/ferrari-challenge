@@ -1,33 +1,58 @@
-body{
-    overflow: hidden;
+:root {
+    --imgWidth:calc(12vw + 5vh);
+    --imgHeight: calc((12vw + 5vh)*0.65);
+    --const: 4vw;
+    --red: rgb(93,0,1);
 }
 
+body{
+    overflow: hidden;
+    background: var(--red);
+}
+#background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none; /* Ensures that the background doesn't interfere with other elements */
+    background: radial-gradient(circle, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.6) 100%);
+}
+#carousel{
+    box-sizing: border-box;
+}
 .carousel-element {
-    width: 200px;
-    height: 120px;
-    background-color: red;
+    width: var(--imgWidth)+32px;
+    height: var(--imgHeight);
+    background-color: rgba(0, 0,0, 0);
     position: absolute; /* Make sure the element is positioned absolutely or relatively */
     top:150%;
     left:150%;
     transition: all 0.5s ease; /* Smooth transition on all properties */
     opacity: 0.5;
+    border-radius: 20px;
 }
 
 .active{
-    top:50%;
-    left:50%;
-    transform: scale(1.8);
+    top:42%;
+    left:calc(51.5% - var(--imgWidth)/2);
+    transform: scale(2.6);
     opacity: 1;
+    z-index: 98;
+    box-shadow: 0px 0px 20px 20px rgba(0, 0, 0, 0.2);
+
 }
 
 .prev{
-    top:10%;
-    left:80%;
+    top:5%;
+    left:calc(100% - var(--imgWidth));
+    margin-left: -16px;
 }
 
 .next{
     top:80%;
-    left:10%;
+    left:0%;
+    margin-left: 16px;
 }
 
 .out-next{
@@ -45,8 +70,11 @@ body{
 }
 
 .car-img{
-    height: 120px;
-    width: 200px;
+    width: var(--imgWidth);
+    height: var(--imgHeight);
+    border-radius: 8px;
+    z-index: 2;
+
 }
 
 .spec{
@@ -58,24 +86,79 @@ body{
 }
 
 .name{
+    font-size: calc(6vw + 3vh);
+    color: wheat;
+    z-index: 10;
     position:absolute;
-    top: 40%;
-    left:30%;
     opacity: 0;
     transition: all 0.5s ease;
+    visibility: hidden;
+    /*! max-width: 48vw; */
+    z-index: 99;
+
 }
 
 .name-active{
+    visibility: visible;
     opacity: 1;
-    top: 40%;
-    left:30%;
+    top: calc(24% - 2*var(--const));
+    left:calc(17% - var(--const));
+    text-shadow: 5px 5px 0px black;
 }
 .name-next{
-    top:50%;
-    left:30%;
+    visibility: hidden;
+    top:70%;
+    left:0%;
+    font-size: calc(3vw + 1vh);
 }
 
 .name-prev{
-    top: 20%;
-    left:60%;
+    visibility: hidden;
+    top:-10%;
+    left:80%;
+    font-size: calc(3vw + 1vh);
+}
+
+#infos{
+    position: absolute;
+    max-width: 65%;
+    height: calc(35% - 3*var(--const));
+    overflow: hidden;
+    margin: 10px;
+    padding-inline: 18px;
+}
+
+.info{
+    box-sizing: border-box;
+    font-size: 1.05rem;
+    color: antiquewhite;
+}
+
+#footer{
+    position: absolute;
+    display: flex;
+    left: 40%;
+    bottom: 4%;
+}
+
+.ferrari-logo{
+    width: calc(1vw + 26vh);
+    height: calc(1vw + 14vh);
+}
+
+#footer-text-container{
+    display: flex;
+    flex-direction: column;
+    row-gap: 0px;
+    text-align: end;
+}
+
+#footer h1{
+    color: antiquewhite;
+    font-size: calc(1.7vw + 1.6vh);
+}
+
+#footer p{
+    color: antiquewhite;
+    font-size: calc(0.9vw + 0.9vh);
 }

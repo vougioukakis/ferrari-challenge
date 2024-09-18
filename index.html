@@ -7,21 +7,22 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div id="background"></div>
     <div id="specs">
-        <!-- will be populated using javascipt-->
     </div>
     <div id="infos">
-        <!-- will be populated using javascipt-->
     </div>
+    <!-- maybe have a read button that moves the name and car image on hover, and when clicked 
+     shows info and specs for each car? -->
     <div id="names">
-         <h1 class="name name-active">348 Challenge</h1>
-         <h1 class="name name-next">F355 Challenge</h1>
-         <h1 class="name name-next">360 Challenge</h1>
-         <h1 class="name name-prev">F430 Challenge</h1>
-         <h1 class="name name-prev">458 Challenge</h1>
-         <h1 class="name name-prev">458 Challenge Evo</h1>
-         <h1 class="name name-prev">488 Challenge</h1>
-         <h1 class="name name-prev">488 Challenge Evo</h1>
+        <h1 class="name name-active">348 Challenge</h1>
+        <h1 class="name name-next">F355 Challenge</h1>
+        <h1 class="name name-next">360 Challenge</h1>
+        <h1 class="name name-next">F430 Challenge</h1>
+        <h1 class="name name-next">458 Challenge</h1>
+        <h1 class="name name-next">458 Challenge Evo</h1>
+        <h1 class="name name-next">488 Challenge</h1>
+        <h1 class="name name-prev">488 Challenge Evo</h1>
     </div>
     <div id="carousel">
         <div class="carousel-element active"><img class="car-img" src="src/cars/ferrari-0.jpg"></div>
@@ -34,7 +35,15 @@
         <div class="carousel-element prev"><img class="car-img" src="src/cars/ferrari-7.jpeg"></div>
 
     </div>
-    
+
+    <div id="footer">
+        <div id="footer-text-container">
+            <h1>Ferrari Challenge Showcase</h1>
+            <p>Nikos Vougioukakis 2024</p>
+        </div>
+        <img class="ferrari-logo" src="src/ferrari.png">
+    </div>
+    <script src="infos.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

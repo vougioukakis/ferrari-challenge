@@ -7,6 +7,8 @@ console.log(names);
 /**
  * throttling to handle scrolling
  */
+
+/*
 function throttle(func, delay) {
     let inThrottle = false;
     return function() {
@@ -22,15 +24,47 @@ function throttle(func, delay) {
 }
 
 document.addEventListener('wheel', throttle((event) => {
-    if (event.deltaY < -5) {
+    if (event.deltaY < 0) {
         cycle('prev');
         console.log('up');
-    } else if (event.deltaY > 5) {
+    } else if (event.deltaY > 0) {
         cycle('next');
         console.log('down');
+    } else {
+        console.log('didnt register')
     }
-}, 800));
+}, 900));
+*/
 
+let isScrolling = false;    
+document.addEventListener('wheel', (event) => {
+    if (!isScrolling) {
+        // Prevent multiple scrolls in quick succession
+        if (event.deltaY < -60) {
+            cycle('prev');
+            console.log('up');
+            isScrolling = true;
+            // Allow scrolling again after 600ms (or another value that feels smooth)
+            setTimeout(() => {
+                isScrolling = false;
+            }, 600);
+
+        } else if (event.deltaY > 60) {
+            cycle('next');
+            console.log('down');
+            isScrolling = true;
+            // Allow scrolling again after 600ms (or another value that feels smooth)
+            setTimeout(() => {
+                isScrolling = false;
+            }, 600);
+
+        } else {
+            console.log('didnt register');
+        }
+
+
+    }
+});
 /**
  * modulo arithmetic to make the index positive
  */
@@ -43,6 +77,7 @@ function normalize(ind){
  */
 function cycle(arg){
     if (arg == 'next'){
+        //scroll down
 
         items[normalize(activeIndex)].classList.remove('active')
         items[normalize(activeIndex)].classList.add('prev');
@@ -65,7 +100,7 @@ function cycle(arg){
         hideElements();
 
         names[normalize(activeIndex)].className = '';
-        names[normalize(activeIndex)].classList.add('name','name-prev');
+        names[normalize(activeIndex)].classList.add('name', 'name-prev');
 
         names[normalize(activeIndex+1)].className = '';
         names[normalize(activeIndex+1)].classList.add('name','name-active');
@@ -74,6 +109,8 @@ function cycle(arg){
         names[normalize(activeIndex+2)].classList.add('name','name-next');
 
         activeIndex++;
+        showNewInfo();
+
 
     } else {
 
@@ -97,15 +134,17 @@ function cycle(arg){
 
         hideElements();
 
-        names[normalize(activeIndex-2)].className = '';
-        names[normalize(activeIndex-2)].classList.add('name','name-next');
-
         names[normalize(activeIndex)].className = '';
-        names[normalize(activeIndex)].classList.add('name','name-next');
+        names[normalize(activeIndex)].classList.add('name', 'name-next');
 
         names[normalize(activeIndex-1)].className = '';
         names[normalize(activeIndex-1)].classList.add('name','name-active');
+
+        names[normalize(activeIndex-2)].className = '';
+        names[normalize(activeIndex-2)].classList.add('name','name-prev');
+
         activeIndex--;
+        showNewInfo();
 
     }
 }
@@ -123,4 +162,11 @@ function hideElements(){
             item.classList.remove('hidden');
         }
     });
+}
+
+const infosDiv = document.getElementById('infos');
+//showNewInfo(); // will run on start
+
+function showNewInfo(){
+    //infosDiv.innerHTML = infos[normalize(activeIndex)];
 }

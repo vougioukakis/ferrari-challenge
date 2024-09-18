@@ -134,14 +134,18 @@ function cycle(arg){
 
         hideElements();
 
-        names[normalize(activeIndex)].className = '';
-        names[normalize(activeIndex)].classList.add('name', 'name-next');
+        const current = names[normalize(activeIndex)];
+        const prev = names[normalize(activeIndex - 1)];
+        const prevPrev = names[normalize(activeIndex - 2)];
 
-        names[normalize(activeIndex-1)].className = '';
-        names[normalize(activeIndex-1)].classList.add('name','name-active');
+        current.classList.remove('name-active', 'name-prev');
+        current.classList.add('name-next');
 
-        names[normalize(activeIndex-2)].className = '';
-        names[normalize(activeIndex-2)].classList.add('name','name-prev');
+        prev.classList.remove('name-next','name-prev');
+        prev.classList.add('name-active');
+
+        prevPrev.classList.remove('name-next','name-active');
+        prevPrev.classList.add('name-prev');
 
         activeIndex--;
         showNewInfo();

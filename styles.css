@@ -1,8 +1,10 @@
 :root {
-    --imgWidth:calc(12vw + 5vh);
-    --imgHeight: calc((12vw + 5vh)*0.65);
+    --imgWidth:calc(8vw + 12vh);
+    --imgHeight: calc((8vw + 12vh)*0.65);
     --const: 4vw;
     --red: rgb(93,0,1);
+    --fontNextPrev: calc(3vw + 1vh);
+    --fontActive: 8.5vw;
 }
 
 body{
@@ -22,7 +24,7 @@ body{
     box-sizing: border-box;
 }
 .carousel-element {
-    width: var(--imgWidth)+32px;
+    width: var(--imgWidth);
     height: var(--imgHeight);
     background-color: rgba(0, 0,0, 0);
     position: absolute; /* Make sure the element is positioned absolutely or relatively */
@@ -30,17 +32,21 @@ body{
     left:150%;
     transition: all 0.5s ease; /* Smooth transition on all properties */
     opacity: 0.5;
-    border-radius: 20px;
+    border-radius: 9px;
+    /*! border-width: 12px; */
+    /*! border-color: red; */
+    border: 1px solid antiquewhite;
 }
 
 .active{
     top:42%;
-    left:calc(51.5% - var(--imgWidth)/2);
+    left:calc(50% - var(--imgWidth)/2);
     transform: scale(2.6);
     opacity: 1;
     z-index: 98;
     box-shadow: 0px 0px 20px 20px rgba(0, 0, 0, 0.2);
 
+    /*! background-color: rgba(0,0,0,0); */
 }
 
 .prev{
@@ -73,7 +79,7 @@ body{
     width: var(--imgWidth);
     height: var(--imgHeight);
     border-radius: 8px;
-    z-index: 2;
+    /*! z-index: 2; */
 
 }
 
@@ -86,8 +92,9 @@ body{
 }
 
 .name{
-    font-size: calc(6vw + 3vh);
-    color: wheat;
+    font-family: Montserrat;
+    font-weight: bolder;
+    color: antiquewhite;
     z-index: 10;
     position:absolute;
     opacity: 0;
@@ -95,28 +102,34 @@ body{
     visibility: hidden;
     /*! max-width: 48vw; */
     z-index: 99;
+    font-size: var(--fontActive);
 
+    margin: 0;
+    width: 100%;
 }
 
 .name-active{
     visibility: visible;
     opacity: 1;
-    top: calc(24% - 2*var(--const));
-    left:calc(17% - var(--const));
-    text-shadow: 5px 5px 0px black;
+    top: calc(30% - 2.5 * var(--const));
+    left: calc(1.7 * var(--const));
+    /*! text-shadow: 5px 5px 0px black; */
 }
+
 .name-next{
     visibility: hidden;
     top:70%;
-    left:0%;
-    font-size: calc(3vw + 1vh);
+    left:-40%;
+    transform: scale(0.3);
 }
 
 .name-prev{
     visibility: hidden;
-    top:-10%;
-    left:80%;
-    font-size: calc(3vw + 1vh);
+    top:-5%;
+    left:44%;
+    transform: scale(0.3);
+
+    width: 100%;
 }
 
 #infos{
@@ -151,14 +164,27 @@ body{
     flex-direction: column;
     row-gap: 0px;
     text-align: end;
+    padding-block: 2.5vh;
 }
 
 #footer h1{
     color: antiquewhite;
     font-size: calc(1.7vw + 1.6vh);
+    margin: 0;
 }
 
 #footer p{
     color: antiquewhite;
     font-size: calc(0.9vw + 0.9vh);
+    margin-block: 2vh;
+}
+
+@media only screen and (max-width: 600px) {
+    .name{
+        text-align: center;
+    }
+
+    .name-active{
+        left: 0px;
+    }
 }

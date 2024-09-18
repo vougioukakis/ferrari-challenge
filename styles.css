@@ -19,6 +19,7 @@ body{
     height: 100vh;
     pointer-events: none; /* Ensures that the background doesn't interfere with other elements */
     background: radial-gradient(circle, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.6) 100%);
+    overflow: hidden;
 }
 #carousel{
     box-sizing: border-box;
@@ -71,6 +72,9 @@ body{
     left:110%;
 }
 
+#wrapper{
+    overflow-x: hidden;
+}
 .hidden{
     display: none;
 }
